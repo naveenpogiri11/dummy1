@@ -1,0 +1,41 @@
+﻿@model List<CareSync.Models.ViewModels.AppointmentDisplayViewModel>
+
+
+
+
+@{
+    ViewData["Title"] = "Manage Appointments";
+}
+
+<div class="container mt-4">
+    <h2>Appointments</h2>
+    <a class="btn btn-primary mb-3" asp-action="Create">Book New Appointment</a>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Patient Name</th>
+                <th>Doctor Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appt in Model)
+            {
+                <tr>
+                    <td>@appt.PatientName</td>
+                    <td>@appt.DoctorName</td>
+                    <td>@appt.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@appt.Time</td>
+                    <td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@appt.AppointmentID" class="btn btn-warning btn-sm me-1">Edit</a>
+                        <a asp-action="Details" asp-route-id="@appt.AppointmentID" class="btn btn-info btn-sm me-1">Details</a>
+                        <a asp-action="Delete" asp-route-id="@appt.AppointmentID" class="btn btn-danger btn-sm me-1">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

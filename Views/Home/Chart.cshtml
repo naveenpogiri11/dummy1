@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = ViewBag.PageTitle;
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+
+    <!-- Bar Chart -->
+    <div class="mb-5">
+        <h4>Appointments per Doctor</h4>
+        <div style="max-width: 700px; margin: auto;">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Line Chart -->
+    <div class="mb-5">
+        <h4>Monthly Appointment Trends</h4>
+        <div style="max-width: 700px; margin: auto;">
+            <canvas id="lineChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="mb-5">
+        <h4>Appointments by Specialty</h4>
+        <div style="max-width: 700px; margin: auto;">
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Bar Chart
+        const barChart = new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: [@Html.Raw(ViewBag.BarLabels)],
+                datasets: [{
+                    label: 'Appointments',
+                    data: [@ViewBag.BarData],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Line Chart
+        const lineChart = new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: [@Html.Raw(ViewBag.LineLabels)],
+                datasets: [{
+                    label: 'Appointments',
+                    data: [@ViewBag.LineData],
+                    fill: false,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Pie Chart
+        const pieChart = new Chart(document.getElementById('pieChart'), {
+            type: 'pie',
+            data: {
+                labels: [@Html.Raw(ViewBag.PieLabels)],
+                datasets: [{
+                    data: [@ViewBag.PieData],
+                    backgroundColor: [
+                        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+}

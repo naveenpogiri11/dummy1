@@ -1,0 +1,14 @@
+﻿@model CareSync.Models.Appointment
+
+@{
+    ViewData["Title"] = "Appointment Details";
+}
+
+<h2>Appointment Details</h2>
+
+<table class="table">
+    <tr><th>Patient ID</th><td>@Model.PatientID</td></tr>
+    <tr><th>Doctor ID</th><td>@Model.DoctorID</td></tr>
+    <tr><th>Date</th><td>@Model.AppointmentDate.ToShortDateString()</td></tr>
+    <tr><th>Time</th><td>@Model.AppointmentTime</td></tr>
+</table>

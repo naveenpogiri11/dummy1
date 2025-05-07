@@ -1,0 +1,26 @@
+﻿@model CareSync.Models.Appointment
+
+@{
+    ViewData["Title"] = "Edit Appointment";
+}
+
+<h2>Edit Appointment</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="AppointmentID" />
+
+    <div class="mb-3">
+        <label>Doctor ID</label>
+        <input asp-for="DoctorID" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Appointment Date</label>
+        <input asp-for="AppointmentDate" type="date" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Appointment Time</label>
+        <input asp-for="AppointmentTime" type="time" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

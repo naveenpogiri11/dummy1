@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareSync", "CareSync.csproj", "{D0838520-358D-4810-9D5C-92A81F6BFA17}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0838520-358D-4810-9D5C-92A81F6BFA17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0838520-358D-4810-9D5C-92A81F6BFA17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0838520-358D-4810-9D5C-92A81F6BFA17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0838520-358D-4810-9D5C-92A81F6BFA17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D677B259-0E2C-4A69-8CB0-54E87AF2D5E8}
+	EndGlobalSection
+EndGlobal

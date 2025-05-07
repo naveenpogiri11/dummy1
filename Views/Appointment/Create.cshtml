@@ -1,0 +1,94 @@
+﻿@model CareSync.Models.ViewModels.BookAppointmentViewModel
+
+@{
+    ViewData["Title"] = "Book Appointment";
+}
+
+<div class="container mt-4">
+    <h2>Book an Appointment</h2>
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label>Patient Name</label>
+            <input asp-for="Patient.Name" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label>Contact Number</label>
+            <input asp-for="Patient.ContactNumber" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label>Problem (Specialty)</label>
+            <select id="problemDropdown" class="form-select" required>
+                <option value="">-- Select Problem --</option>
+                @foreach (var problem in Model.Problems)
+                {
+                    <option value="@problem">@problem</option>
+                }
+            </select>
+        </div>
+
+        <!-- Select Doctor -->
+        <div class="mb-3">
+            <label>Doctor</label>
+            <select asp-for="Appointment.DoctorID" class="form-select" id="doctorDropdown" required>
+                <option value="">-- Select Doctor --</option>
+                @foreach (var doctor in Model.SuggestedDoctors)
+                {
+                    <option value="@doctor.DoctorID" data-specialty="@doctor.PrimarySpecialty">
+                        Dr. @doctor.FirstName (@doctor.City)
+                    </option>
+                }
+            </select>
+        </div>
+
+
+
+        <div class="mb-3">
+            <label>Appointment Date</label>
+            <input asp-for="Appointment.AppointmentDate" type="date"
+                   min="@DateTime.Today.ToString("yyyy-MM-dd")"
+                   max="@DateTime.Today.AddMonths(3).ToString("yyyy-MM-dd")"
+                   class="form-control" required />
+
+        </div>
+
+        <div class="mb-3">
+            <label>Appointment Time</label>
+            <select asp-for="Appointment.AppointmentTime" class="form-select" required>
+                <option value="">-- Select Time --</option>
+                @{
+                    for (int hour = 8; hour <= 18; hour++) // 8 AM to 6 PM
+                    {
+                        string time = new DateTime(1, 1, 1, hour, 0, 0).ToString("HH:mm");
+                        <option value="@time">@time</option>
+                    }
+                }
+            </select>
+
+        </div>
+
+        <button type="submit" class="btn btn-success">Book</button>
+    </form>
+</div>
+
+
+<!-- JavaScript to Filter Doctors by Problem -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const problemDropdown = document.getElementById('problemDropdown');
+        const doctorDropdown = document.getElementById('doctorDropdown');
+
+        const allDoctors = Array.from(doctorDropdown.options).filter(opt => opt.value !== "");
+
+        problemDropdown.addEventListener('change', function () {
+            const selectedProblem = this.value;
+            doctorDropdown.innerHTML = '<option value="">-- Select Doctor --</option>';
+
+            allDoctors.forEach(option => {
+                if (option.getAttribute('data-specialty') === selectedProblem) {
+                    doctorDropdown.appendChild(option.cloneNode(true));
+                }
+            });
+        });
+    });
+</script>
